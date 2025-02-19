@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        "circle-gray": "url('/assets/img/Background.png')",
+      }
+
     },
   },
   plugins: [],

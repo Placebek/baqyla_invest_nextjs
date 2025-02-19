@@ -1,101 +1,37 @@
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+		<div className='flex flex-col items-center justify-center h-screen'>
+      {/* <div className="absolute w-[1200px] h-[600px] rounded-[72px] border-[1px] border-[#4B4C4E] border-opacity-25">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width='900px'
+				height='600px'
+				viewBox='0 0 1437 1023'
+				fill='none'
+			>
+				<path
+					d='M-3.62396e-05 952C-3.62396e-05 991.765 32.2461 1024.13 71.9854 1022.72C236.495 1016.86 398.558 990.974 551.064 946.053C725.773 894.592 884.517 819.165 1018.23 724.077C1151.95 628.99 1258.02 516.105 1330.39 391.868C1389.83 289.82 1425.57 181.754 1436.45 71.8835C1440.36 32.3123 1407.76 5.96688e-05 1368 5.79834e-05L72 3.05176e-06C32.2355 1.36632e-06 -3.62396e-05 32.2355 -3.62396e-05 72V952Z'
+					fill='url(#paint0_linear_2_6)'
+				/>
+				<defs>
+					<linearGradient
+						id='paint0_linear_2_6'
+						x1='-1.43786e-06'
+						y1='27.7696'
+						x2='582.558'
+						y2='730.68'
+						gradientUnits='userSpaceOnUse'
+					>
+						<stop stop-color='#474B4E' />
+						<stop offset='1' stop-color='#434142' stop-opacity='0' />
+					</linearGradient>
+				</defs>
+			</svg>
+      </div> */}
+
+			<div className='bg-[#0B0B0B] bg-opacity-95 w-[1200px] h-[600px] rounded-[72px] border-[1px] border-[#4B4C4E] border-opacity-25'></div>
+		</div>
+	)
 }
