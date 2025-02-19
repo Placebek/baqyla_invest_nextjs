@@ -1,0 +1,1 @@
+# baqyla_invest_nextjs
