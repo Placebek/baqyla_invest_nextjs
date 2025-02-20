@@ -1,12 +1,6 @@
 import React from 'react'
+import StockCardsProps from '../interfaces/StockCardsProps'
 
-interface StockCardsProps {
-  name: string;
-  lastDeal: string;
-  change: string;
-  volume: string;
-  updateTime: string;
-}
 
 function StockCards({ name, lastDeal, change, volume, updateTime }: StockCardsProps) {
   return (
