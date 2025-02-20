@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import EnergyChart from './graph'
+import EnergyChart from '../graph'
 import StockCards from '../UI/StockCards'
-import { getAllStocks } from './services/stocks'
-import StockCardsProps from './interfaces/StockCardsProps'
-import Link from 'next/link'
+import { getAllStocks } from '../services/stocks'
+import StockCardsProps from '../interfaces/StockCardsProps'
+
 interface HomeProps {
 	stocks: StockCardsProps[]
 }
@@ -80,28 +80,16 @@ export default function Home({ stocks }: HomeProps) {
 
 				<div className='grid grid-flow-col w-full'>
 					<div>
-						{/* {stocks.map(stock => (
-                            <StockCards
-                                key={stock.name}
-                                name={stock.name}
-                                lastDeal={stock.lastDeal}
-                                change={stock.change}
-                                volume={stock.volume}
-                                updateTime={stock.updateTime}
-                            />
-                        ))} */}
-						<StockCards
-							name='Aeroflot'
-							lastDeal='1,000'
-							change='10'
-							volume='1,000'
-							updateTime='1,000'
-						/>
-					<div>
-						<Link href='/2'>
-							Home
-						</Link>
-					</div>
+						{stocks.map(stock => (
+							<StockCards
+								key={stock.name}
+								name={stock.name}
+								lastDeal={stock.lastDeal}
+								change={stock.change}
+								volume={stock.volume}
+								updateTime={stock.updateTime}
+							/>
+						))}
 					</div>
 					<div>
 						<EnergyChart />
@@ -112,9 +100,9 @@ export default function Home({ stocks }: HomeProps) {
 	)
 }
 
-// export async function getServerSideProps() {
-//     const stocks = await getAllStocks()
-//     return {
-//         props: { stocks },
-//     }
-// }
+export async function getServerSideProps() {
+	const stocks = await getAllStocks()
+	return {
+		props: { stocks },
+	}
+}
