@@ -14,7 +14,7 @@ export default {
       },
       backgroundImage: {
         "circle-gray": "url('/assets/img/Background.png')",
-      }
+      },
 
     },
   },
