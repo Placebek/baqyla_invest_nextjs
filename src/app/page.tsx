@@ -3,15 +3,103 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import EnergyChart from './graph'
-import StockCards from '../UI/StockCards'
+import StockCards from './UI/StockCards'
 import { getAllStocks } from './services/stocks'
 import StockCardsProps from './interfaces/StockCardsProps'
 import Link from 'next/link'
-interface HomeProps {
-	stocks: StockCardsProps[]
-}
 
-export default function Home({ stocks }: HomeProps) {
+
+
+const stocks: StockCardsProps[] = [
+	{
+		name: 'Aeroflot',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Gazprom',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Sberbank',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Rosneft',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Aeroflot',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Gazprom',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Sberbank',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Rosneft',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Aeroflot',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Gazprom',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Sberbank',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+	{
+		name: 'Rosneft',
+		lastDeal: '1,000',
+		change: '10',
+		volume: '1,000',
+		updateTime: '1,000',
+	},
+]
+
+
+
+export default function Home() {
 	const [activeItem, setActiveItem] = useState('Россия')
 
 	const handleItemClick = (item: string) => {
@@ -21,7 +109,7 @@ export default function Home({ stocks }: HomeProps) {
 	const menuItems = ['Россия', 'Все миры', 'США']
 
 	return (
-		<div className='flex flex-col items-center justify-center h-screen'>
+		<div className='flex flex-col items-center mt-[7vh]'>
 			<div className='absolute w-[1200px] h-[600px] rounded z-10'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -50,7 +138,7 @@ export default function Home({ stocks }: HomeProps) {
 				</svg>
 			</div>
 
-			<div className='bg-[#0B0B0B] bg-opacity-95 w-[1140px] h-[600px] rounded-[50px] border-[1px] border-[#4B4C4E] border-opacity-25 p-8'>
+			<div className='bg-[#0B0B0B] bg-opacity-95 w-[1140px] min-h-[600px] rounded-[50px] border-[1px] border-[#4B4C4E] border-opacity-25 p-8'>
 				<div className='relative flex flex-row z-10 gap-10 justify-start border-b-[1px] pb-4 border-[#FFFFFF] border-opacity-[12%]'>
 					<div>
 						Baqyla<span className='text-orange-300 font-semibold'>Invest</span>
@@ -80,27 +168,28 @@ export default function Home({ stocks }: HomeProps) {
 
 				<div className='grid grid-flow-col w-full'>
 					<div>
-						{/* {stocks.map(stock => (
-                            <StockCards
-                                key={stock.name}
-                                name={stock.name}
-                                lastDeal={stock.lastDeal}
-                                change={stock.change}
-                                volume={stock.volume}
-                                updateTime={stock.updateTime}
-                            />
-                        ))} */}
-						<StockCards
+						{stocks.map((stock, index) => (
+							<StockCards
+								key={`${stock.name}-${index}`}
+								name={stock.name}
+								lastDeal={stock.lastDeal}
+								change={stock.change}
+								volume={stock.volume}
+								updateTime={stock.updateTime}
+							/>
+						))}
+						{/* <StockCards
 							name='Aeroflot'
 							lastDeal='1,000'
 							change='10'
 							volume='1,000'
 							updateTime='1,000'
-						/>
-					<div>
-						<Link href='/2'>
-							Home
-						</Link>
+						/> */}
+					<div className='relative z-10 flex justify-center items-center bg-[#3030302b] p-2 rounded-lg shadow-lg cursor-pointer hover:bg-[#303030]'>
+                        <button>
+
+						Загрузить еще
+                        </button>
 					</div>
 					</div>
 					<div>
