@@ -1,104 +1,177 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import EnergyChart from './graph'
+import { AnimatePresence, motion } from 'framer-motion'
 import StockCards from './UI/StockCards'
-import { getAllStocks } from './services/stocks'
-import StockCardsProps from './interfaces/StockCardsProps'
 import Link from 'next/link'
-import { div } from 'framer-motion/client'
 
+// Интерфейс для карточек акций
+interface StockCardsProps {
+	id: number
+	name: string
+	lastDeal: string
+	change: string
+	volume: string
+	updateTime: string
+	open: number
+	max: number
+	min: number
+	close: number
+}
 
-
-const stocks: StockCardsProps[] = [
-    {
-        id: 1,
-        name: 'Aeroflot',
-        lastDeal: '1,000',
-        change: '10',
-        volume: '1,000',
-        updateTime: '1,000',
-        open: 1000,
-        max: 1000,
-        min: 1000,
-        close: 1000,
-    },
-    {
-        id: 2,
-        name: 'Gazprom',
-        lastDeal: '1,000',
-        change: '10',
-        volume: '1,000',
-        updateTime: '1,000',
-        open: 1000,
-        max: 1000,
-        min: 1000,
-        close: 1000,
-    },
-    {
-        id: 3,
-        name: 'Sberbank',
-        lastDeal: '1,000',
-        change: '10',
-        volume: '1,000',
-        updateTime: '1,000',
-        open: 1000,
-        max: 1000,
-        min: 1000,
-        close: 1000,
-    },
-    {
-        id: 4,
-        name: 'Rosneft',
-        lastDeal: '1,000',
-        change: '10',
-        volume: '1,000',
-        updateTime: '1,000',
-        open: 1000,
-        max: 1000,
-        min: 1000,
-        close: 1000,
-    },
-    {
-        id: 5,
-        name: 'Aeroflot',
-        lastDeal: '1,000',
-        change: '10',
-        volume: '1,000',
-        updateTime: '1,000',
-        open: 1000,
-        max: 1000,
-        min: 1000,
-        close: 1000,
-    },
-    {
-        id: 6,
-        name: 'Gazprom',
-        lastDeal: '1,000',
-        change: '10',
-        volume: '1,000',
-        updateTime: '1,000',
-        open: 1000,
-        max: 1000,
-        min: 1000,
-        close: 1000,
-    },
-    {
-        id: 7,
-        name: 'Sberbank',
-        lastDeal: '1,000',
-        change: '10',
-        volume: '1,000',
-        updateTime: '1,000',
-        open: 1000,
-        max: 1000,
-        min: 1000,
-        close: 1000,
-    },
-]
-
-
+// Моковые данные для всех стран (одинаковые для простоты)
+const stockDataByCountry: Record<string, StockCardsProps[]> = {
+	Россия: [
+		{
+			id: 1,
+			name: 'Aeroflot',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+		{
+			id: 2,
+			name: 'Gazprom',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+		{
+			id: 3,
+			name: 'Sberbank',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+		{
+			id: 4,
+			name: 'Rosneft',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+	],
+	США: [
+		{
+			id: 1,
+			name: 'Aeroflot',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+		{
+			id: 2,
+			name: 'Gazprom',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+		{
+			id: 3,
+			name: 'Sberbank',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+		{
+			id: 4,
+			name: 'Rosneft',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+	],
+	'Все миры': [
+		{
+			id: 1,
+			name: 'Aeroflot',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+		{
+			id: 2,
+			name: 'Gazprom',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+		{
+			id: 3,
+			name: 'Sberbank',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+		{
+			id: 4,
+			name: 'Rosneft',
+			lastDeal: '1,000',
+			change: '10',
+			volume: '1,000',
+			updateTime: '1,000',
+			open: 1000,
+			max: 1000,
+			min: 1000,
+			close: 1000,
+		},
+	],
+}
 
 export default function Home() {
 	const [activeItem, setActiveItem] = useState('Россия')
@@ -109,42 +182,30 @@ export default function Home() {
 
 	const menuItems = ['Россия', 'Все миры', 'США']
 
+	// Variants для анимации карточек акций
+	const cardVariants = {
+		hidden: { opacity: 0, y: 20 },
+		visible: (i: number) => ({
+			opacity: 1,
+			y: 0,
+			transition: {
+				delay: i * 0.1,
+				duration: 0.5,
+			},
+		}),
+	}
+
 	return (
-		<div className='flex flex-col items-center mt-[7vh] mb-[7vh]'>
-			<div className='absolute w-[1200px] min-h-[600px] rounded z-10'>
-				<svg
-					xmlns='http://www.w3.org/2000/svg'
-					width='900px'
-					height='600px'
-					viewBox='0 0 1437 1023'
-					fill='none'
-				>
-					<path
-						d='M-3.62396e-05 952C-3.62396e-05 991.765 32.2461 1024.13 71.9854 1022.72C236.495 1016.86 398.558 990.974 551.064 946.053C725.773 894.592 884.517 819.165 1018.23 724.077C1151.95 628.99 1258.02 516.105 1330.39 391.868C1389.83 289.82 1425.57 181.754 1436.45 71.8835C1440.36 32.3123 1407.76 5.96688e-05 1368 5.79834e-05L72 3.05176e-06C32.2355 1.36632e-06 -3.62396e-05 32.2355 -3.62396e-05 72V952Z'
-						fill='url(#paint0_linear_2_6)'
-					/>
-					<defs>
-						<linearGradient
-							id='paint0_linear_2_6'
-							x1='0'
-							y1='0'
-							x2='900'
-							y2='700'
-							gradientUnits='userSpaceOnUse'
-						>
-							<stop stopColor='#212121' />
-							<stop offset='1' stopColor='#161616' stopOpacity='0' />
-						</linearGradient>
-					</defs>
-				</svg>
-			</div>
+		<div className='flex flex-col items-center min-h-screen mt-[7vh]'>
+			{/* SVG Background */}
 
-			<div className='bg-[#0B0B0B] bg-opacity-95 w-[1140px] min-h-[600px] rounded-[50px] border-[1px] border-[#4B4C4E] border-opacity-25 p-8'>
-				<div className='relative flex flex-row z-10 gap-10 justify-start border-b-[1px] pb-4 border-[#FFFFFF] border-opacity-[12%]'>
-					<div>
-						Baqyla<span className='text-orange-300 font-semibold'>Invest</span>
+			{/* Основной контент */}
+			<div className='relative  bg-gradient-to-r from-[#141414] to-[#101010] bg-opacity-95 w-[1140px] min-h-[600px] rounded-[50px] border-[1px] border-[#4B4C4E] border-opacity-25 p-8 z-20'>
+				{/* Меню */}
+				<div className='flex flex-row justify-between items-center border-b-[1px] pb-4 border-[#FFFFFF] border-opacity-[12%]'>
+					<div className='font-bold text-white'>
+						Baqyla<span className='text-orange-300'>Invest</span>
 					</div>
-
 					<div className='relative flex gap-10 ml-[5vw]'>
 						{menuItems.map(item => (
 							<div
@@ -167,50 +228,56 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className='grid grid-flow-col w-full'>
-					<div>
-						{stocks.map((stock, index) => (
-                            <Link href={`/${stock.id}`} key={stock.id}>
-							<StockCards
-                                id={stock.id}
-								name={stock.name}
-								lastDeal={stock.lastDeal}
-								change={stock.change}
-								volume={stock.volume}
-								updateTime={stock.updateTime}
-								open={stock.open}
-								max={stock.max}
-								min={stock.min}
-								close={stock.close}
-							/>
-                            </Link>
+				{/* Анимированный контейнер для данных акций */}
+				<AnimatePresence mode='wait'>
+					<motion.div
+						key={activeItem}
+						initial={{ opacity: 0, x: -100 }}
+						animate={{ opacity: 1, x: 0 }}
+						exit={{ opacity: 0, x: 100 }}
+						transition={{ duration: 0.5 }}
+						className='grid grid-cols-1'
+					>
+						{stockDataByCountry[activeItem].map((stock, index) => (
+							<motion.div
+								key={stock.id}
+								custom={index}
+								variants={cardVariants}
+								initial='hidden'
+								animate='visible'
+								exit='hidden'
+								className='p-2 rounded-lg shadow-lg hover:shadow-xl transition'
+							>
+								<Link href={`/${stock.id}`}>
+									<StockCards
+										id={stock.id}
+										name={stock.name}
+										lastDeal={stock.lastDeal}
+										change={stock.change}
+										volume={stock.volume}
+										updateTime={stock.updateTime}
+										open={stock.open}
+										max={stock.max}
+										min={stock.min}
+										close={stock.close}
+									/>
+								</Link>
+							</motion.div>
 						))}
-						{/* <StockCards
-							name='Aeroflot'
-							lastDeal='1,000'
-							change='10'
-							volume='1,000'
-							updateTime='1,000'
-						/> */}
-					<div className='relative z-10 flex justify-center items-center bg-[#3030302b] p-2 rounded-lg shadow-lg cursor-pointer hover:bg-[#303030]'>
-                        <button>
+					</motion.div>
+				</AnimatePresence>
 
+				{/* Кнопка "Загрузить еще" */}
+				<div className='relative z-10 flex justify-center items-center mt-8'>
+					<motion.button
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+						className='bg-orange-300 text-black font-semibold py-2 px-6 rounded-lg shadow-lg hover:bg-orange-400 transition'
+					>
 						Загрузить еще
-                        </button>
-					</div>
-					</div>
-					{/* <div>
-						<EnergyChart />
-					</div> */}
+					</motion.button>
 				</div>
 			</div>
 		</div>
 	)
 }
-
-// export async function getServerSideProps() {
-//     const stocks = await getAllStocks()
-//     return {
-//         props: { stocks },
-//     }
-// }

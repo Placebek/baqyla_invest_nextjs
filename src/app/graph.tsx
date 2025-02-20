@@ -33,7 +33,6 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 			<div className='bg-black bg-opacity-80 text-white p-2 rounded-md shadow-lg fixed'>
 				<p className='text-sm font-semibold'>{`Год: ${label}`}</p>
 				<p className='text-orange-300'>{`Бытовая: ${payload[0].value} EUR/kWh`}</p>
-				<p className='text-blue-400'>{`Индустрия: ${payload[1].value} EUR/kWh`}</p>
 			</div>
 		)
 	}
