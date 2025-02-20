@@ -7,94 +7,95 @@ import StockCards from './UI/StockCards'
 import { getAllStocks } from './services/stocks'
 import StockCardsProps from './interfaces/StockCardsProps'
 import Link from 'next/link'
+import { div } from 'framer-motion/client'
 
 
 
 const stocks: StockCardsProps[] = [
-	{
-		name: 'Aeroflot',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Gazprom',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Sberbank',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Rosneft',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Aeroflot',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Gazprom',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Sberbank',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Rosneft',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Aeroflot',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Gazprom',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Sberbank',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
-	{
-		name: 'Rosneft',
-		lastDeal: '1,000',
-		change: '10',
-		volume: '1,000',
-		updateTime: '1,000',
-	},
+    {
+        id: 1,
+        name: 'Aeroflot',
+        lastDeal: '1,000',
+        change: '10',
+        volume: '1,000',
+        updateTime: '1,000',
+        open: 1000,
+        max: 1000,
+        min: 1000,
+        close: 1000,
+    },
+    {
+        id: 2,
+        name: 'Gazprom',
+        lastDeal: '1,000',
+        change: '10',
+        volume: '1,000',
+        updateTime: '1,000',
+        open: 1000,
+        max: 1000,
+        min: 1000,
+        close: 1000,
+    },
+    {
+        id: 3,
+        name: 'Sberbank',
+        lastDeal: '1,000',
+        change: '10',
+        volume: '1,000',
+        updateTime: '1,000',
+        open: 1000,
+        max: 1000,
+        min: 1000,
+        close: 1000,
+    },
+    {
+        id: 4,
+        name: 'Rosneft',
+        lastDeal: '1,000',
+        change: '10',
+        volume: '1,000',
+        updateTime: '1,000',
+        open: 1000,
+        max: 1000,
+        min: 1000,
+        close: 1000,
+    },
+    {
+        id: 5,
+        name: 'Aeroflot',
+        lastDeal: '1,000',
+        change: '10',
+        volume: '1,000',
+        updateTime: '1,000',
+        open: 1000,
+        max: 1000,
+        min: 1000,
+        close: 1000,
+    },
+    {
+        id: 6,
+        name: 'Gazprom',
+        lastDeal: '1,000',
+        change: '10',
+        volume: '1,000',
+        updateTime: '1,000',
+        open: 1000,
+        max: 1000,
+        min: 1000,
+        close: 1000,
+    },
+    {
+        id: 7,
+        name: 'Sberbank',
+        lastDeal: '1,000',
+        change: '10',
+        volume: '1,000',
+        updateTime: '1,000',
+        open: 1000,
+        max: 1000,
+        min: 1000,
+        close: 1000,
+    },
 ]
 
 
@@ -109,8 +110,8 @@ export default function Home() {
 	const menuItems = ['Россия', 'Все миры', 'США']
 
 	return (
-		<div className='flex flex-col items-center mt-[7vh]'>
-			<div className='absolute w-[1200px] h-[600px] rounded z-10'>
+		<div className='flex flex-col items-center mt-[7vh] mb-[7vh]'>
+			<div className='absolute w-[1200px] min-h-[600px] rounded z-10'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					width='900px'
@@ -128,7 +129,7 @@ export default function Home() {
 							x1='0'
 							y1='0'
 							x2='900'
-							y2='600'
+							y2='700'
 							gradientUnits='userSpaceOnUse'
 						>
 							<stop stopColor='#212121' />
@@ -169,14 +170,20 @@ export default function Home() {
 				<div className='grid grid-flow-col w-full'>
 					<div>
 						{stocks.map((stock, index) => (
+                            <Link href={`/${stock.id}`} key={stock.id}>
 							<StockCards
-								key={`${stock.name}-${index}`}
+                                id={stock.id}
 								name={stock.name}
 								lastDeal={stock.lastDeal}
 								change={stock.change}
 								volume={stock.volume}
 								updateTime={stock.updateTime}
+								open={stock.open}
+								max={stock.max}
+								min={stock.min}
+								close={stock.close}
 							/>
+                            </Link>
 						))}
 						{/* <StockCards
 							name='Aeroflot'
@@ -192,9 +199,9 @@ export default function Home() {
                         </button>
 					</div>
 					</div>
-					<div>
+					{/* <div>
 						<EnergyChart />
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>

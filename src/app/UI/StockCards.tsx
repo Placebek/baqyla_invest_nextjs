@@ -1,34 +1,49 @@
 import StockCardsProps from '../interfaces/StockCardsProps'
 
+function StockCards({
+	name,
+	lastDeal,
+	change,
+	volume,
+	max,
+	min,
+	close,
+	updateTime,
+}: StockCardsProps) {
+	return (
+		<div className='relative z-10 mt-2 w-[70vw] p-1 rounded-lg hover:bg-[#343435]'>
+			<div className='flex justify-between items-center text-center gap-4'>
+				<div className='text-lg font-semibold w-[150px]'>{name}</div>
 
-function StockCards({ name, lastDeal, change, volume, updateTime }: StockCardsProps) {
-  return (
-		<div>
-			<div className='relative z-10 mt-2 flex flex-row gap-4 rounded-[10px] hover:bg-[#343435] w-full p-2 items-center'>
-				<div>{name}</div>
-				<div className='flex flex-col leading-4'>
-					<div className='text-sm text-[#8D8D8D]'>Посл. сделка</div>
-					<div className='text-base'>{lastDeal}</div>
-				</div>
-				<div className='flex flex-col leading-4'>
-					<div className='text-sm text-[#8D8D8D]'>% Изм. цены</div>
-					<div
-						className={`text-base ${
-							parseFloat(change) > 0 ? 'text-green-500' : 'text-red-500'
-						}`}
-					>
-						{change}%
-					</div>
-				</div>
-				<div className='flex flex-col leading-4'>
-					<div className='text-sm text-[#8D8D8D]'>Объем, шт.</div>
-					<div className='text-base'>{volume}</div>
-				</div>
-				<div className='flex flex-col leading-4'>
-					<div className='text-sm text-[#8D8D8D]'>Время обн.</div>
-					<div className='text-base'>{updateTime}</div>
-				</div>
+				<CardItem label='Посл. сделка' value={lastDeal} />
+				<CardItem
+					label='% Изм. цены'
+					value={`${change}%`}
+					valueClass={Number(change) > 0 ? 'text-green-500' : 'text-red-500'}
+				/>
+				<CardItem label='Объем' value={volume} />
+				<CardItem label='Макс.' value={max} />
+				<CardItem label='Мин.' value={min} />
+				<CardItem label='Закрытие' value={close} />
+				<CardItem label='Время обн.' value={updateTime} />
 			</div>
+		</div>
+	)
+}
+
+function CardItem({
+	label,
+	value,
+	valueClass = '',
+}: {
+	label: string
+	value: string | number
+	valueClass?: string
+}) {
+	return (
+		<div className='flex flex-col w-[120px]'>
+			<div className='text-sm text-[#8D8D8D]'>{label}</div>
+			<div className={`text-base font-medium ${valueClass}`}>{value}</div>
 		</div>
 	)
 }
