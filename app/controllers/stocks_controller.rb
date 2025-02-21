@@ -8,8 +8,7 @@ class StocksController < ApplicationController
                                  stocks_data.open, stocks_data.high, stocks_data.low, 
                                  stocks_data.close, stocks_data.volume, stocks_data.last_time')
                         .map do |stock|
-                          # Доступ к данным из stocks_data через ассоциацию
-                          stock_data = stock.stocks_data.first # Берем первую запись из stocks_data
+                          stock_data = stock.stocks_data.first
                           {
                             id: stock.id,
                             name: stock.name,

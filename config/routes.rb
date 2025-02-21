@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get '/stocks', to: 'stocks#index'         # Список акций по стране
-  get '/stocks/:id', to: 'stocks#show'      # Получение акции по id
+  get '/stocks', to: 'stocks#index'         
+  get '/stocks/:id', to: 'stocks#show'      
 end

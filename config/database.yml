@@ -2,9 +2,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres       # Имя пользователя PostgreSQL
-  password: oneplusz2    # Пароль, который вы указали при установке
-  host: localhost          # Хост (локально)
+  username: postgres       
+  password: oneplusz2    
+  host: localhost        
 
 development:
   <<: *default
